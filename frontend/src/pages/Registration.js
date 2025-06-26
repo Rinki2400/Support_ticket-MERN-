@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import "./pages/LoginPage.css";
-import validate from "../src/validation/RegistrationForm";
+import "../pages/LoginPage.css";
+import validate from "../validation/RegistrationForm";
 
 function Registration() {
   return (
