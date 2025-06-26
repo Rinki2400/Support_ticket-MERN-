@@ -1,15 +1,20 @@
-// src/pages/Home.js
-import React from 'react';
-import '../pages/Home.page.css'
-// import logo from '../assets/animation/call-center.png'
-import Animation from '../assets/animation/Call Center.gif'
+import '../pages/Home.page.css';
+import logo from '../assets/animation/call-center.png';
+import Animation from '../assets/animation/Call Center.gif';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="home-container">
       <nav className="navbar">
-        <img src="" alt="Logo" className="logo" />
-        <button className="login-btn">Login</button>
+        <img src={logo} alt="Logo" className="logo" />
+        <button className="login-btn" onClick={handleLoginClick}>Login</button>
       </nav>
 
       <main className="main-content">
