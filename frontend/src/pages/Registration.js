@@ -2,8 +2,10 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../pages/LoginPage.css";
 import validate from "../validation/RegistrationForm";
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
+  const navigate = useNavigate();
   return (
     <div className="login-wrapper ">
       <div className="login-card">
@@ -18,6 +20,8 @@ function Registration() {
           validate={validate}
           onSubmit={(values) => {
             console.log(values);
+            navigate("/login"); // Redirect to login page after successful registration
+            
           }}
         >
           {() => (
