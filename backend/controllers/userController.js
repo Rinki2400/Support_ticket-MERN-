@@ -2,12 +2,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../model/userModel');
-const generateToken = (userId) => {
-    const secret = 'yourSuperSecretKey'; 
-    return jwt.sign({ id: userId }, secret, {
-        expiresIn: '24h',
-    });
-};
+const generateToken = require('../utils/generateToken');
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
