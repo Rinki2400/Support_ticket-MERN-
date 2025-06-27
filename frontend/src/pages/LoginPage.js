@@ -39,7 +39,7 @@ function LoginPage() {
             <button
               type="submit"
               className=" btn-primary"
-      
+             
             >
               Login
             </button>
