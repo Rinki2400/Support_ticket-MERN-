@@ -13,4 +13,5 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', userAuthRoutes);
 
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
