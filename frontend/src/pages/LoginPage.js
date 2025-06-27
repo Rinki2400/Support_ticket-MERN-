@@ -1,9 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import validateLogin from "../validation/loginValidation";
+import { handleLoginSubmit } from "../api/auth";
 import "./LoginPage.css";
 
 function LoginPage() {
+  const navigate = useNavigate();
+
+  // Wrapper to pass navigate into your login handler
+  const onSubmit = (values, formikHelpers) => {
+    handleLoginSubmit(values, formikHelpers, navigate);
+  };
+
   return (
     <div className="login-wrapper">
       <div className="login-card">
@@ -11,9 +20,7 @@ function LoginPage() {
         <Formik
           initialValues={{ email: "", password: "" }}
           validate={validateLogin}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log("Form submitted:", values);
-          }}
+          onSubmit={onSubmit}
         >
           <Form>
             <div className="input_field">
@@ -36,13 +43,7 @@ function LoginPage() {
               />
               <ErrorMessage name="password" component="div" className="error" />
             </div>
-            <button
-              type="submit"
-              className=" btn-primary"
-             
-            >
-              Login
-            </button>
+            <button type="submit" className="btn-primary">Login</button>
             <div className="text-center mt-3">
               <span>Not registered? </span>
               <a href="/register">Register</a>

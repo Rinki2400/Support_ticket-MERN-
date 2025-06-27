@@ -1,13 +1,19 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import "../pages/LoginPage.css";
-import validate from "../validation/RegistrationForm";
 import { useNavigate } from "react-router-dom";
+import { handleRegistrationSubmit } from "../api/auth";
+import validate from "../validation/RegistrationForm";
+import "../pages/LoginPage.css";
 
 function Registration() {
   const navigate = useNavigate();
+
+  const onSubmit = (values, formikHelpers) => {
+    handleRegistrationSubmit(values, formikHelpers, navigate);
+  };
+
   return (
-    <div className="login-wrapper ">
+    <div className="login-wrapper">
       <div className="login-card">
         <h3 className="loginHeading">Registration</h3>
         <Formik
@@ -18,69 +24,54 @@ function Registration() {
             confirmPassword: "",
           }}
           validate={validate}
-          onSubmit={(values) => {
-            console.log(values);
-            navigate("/login"); // Redirect to login page after successful registration
-            
-          }}
+          onSubmit={onSubmit}
         >
           {() => (
             <Form>
-              <div className="inpur_field">
+              <div className="input_field">
                 <Field
                   type="text"
                   className="form-control"
-                  id="fullName"
                   name="fullName"
-                  placeholder=" Full Name"
+                  placeholder="Full Name"
                 />
-                <ErrorMessage
-                  name="fullName"
-                  component="div"
-                  className="error"
-                />
+                <ErrorMessage name="fullName" component="div" className="error" />
               </div>
-              <div className="inpur_field">
+
+              <div className="input_field">
                 <Field
                   type="email"
                   className="form-control"
-                  id="email"
                   name="email"
                   placeholder="Enter email"
                 />
                 <ErrorMessage name="email" component="div" className="error" />
               </div>
-              <div className="inpur_field">
+
+              <div className="input_field">
                 <Field
                   type="password"
                   className="form-control"
-                  id="password"
                   name="password"
                   placeholder="Create Password"
                 />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="error"
-                />
+                <ErrorMessage name="password" component="div" className="error" />
               </div>
-              <div className="inpur_field">
+
+              <div className="input_field">
                 <Field
                   type="password"
                   className="form-control"
-                  id="confirmPassword"
                   name="confirmPassword"
                   placeholder="Confirm Password"
                 />
-                <ErrorMessage
-                  name="confirmPassword"
-                  component="div"
-                  className="error"
-                />
+                <ErrorMessage name="confirmPassword" component="div" className="error" />
               </div>
+
               <button type="submit" className="btn btn-primary w-100">
                 Register
               </button>
+
               <div className="text-center mt-3">
                 <span>Already registered? </span>
                 <a href="/login">Login</a>
